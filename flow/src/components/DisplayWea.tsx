@@ -8,14 +8,37 @@ import { RiLoaderFill } from "react-icons/ri"
 import { TiWeatherPartlySunny } from "react-icons/ti"
 import axios from "axios";
 
+interface WeatherDataProps {
+  name: string;
+
+  main: {
+    temp: number,
+    humidity: number
+  },
+  sys: {
+    country: string;
+  },
+  weather: {
+    main: string;
+  }[];
+  wind: {
+    speed: number;
+  },
+}
+
 const DisplayWea = () => {
 
+  // consumicion de Apis
   const api_key = "11f370f6b49545f3442d3ea3858319f9";
   const api_Endpoint = "https://api.openweathermap.org/data/2.5/";
 
+  // Traera lo que pedimos de interfaace---
+
+  const [weatherData, setWeatherData] = React.useState<WeatherDataProps | null>(null);
+
   // consumimos el apikey y detallamos datos -------
 
-  const fetchCurrentWeather = async(lat:number, lon:number) => {
+  const fetchCurrentWeather = async (lat: number, lon: number) => {
     const url = `${api_Endpoint}weather?lat=${lat}&lon=${lon}&appid=${api_key}&units=metric`
 
     const response = await axios.get(url);
@@ -27,16 +50,16 @@ const DisplayWea = () => {
   React.useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
-  // Destrecturamos
+      // Destrecturamos
       Promise.all([fetchCurrentWeather(latitude, longitude)]).then(
-        ([ currentWeather]) => {
-          console.log(currentWeather)
+        ([currentWeather]) => {
+          setWeatherData(currentWeather)
         }
       )
     })
   })
 
-  
+
   return (
     <MainWrapper>
       <div className="container">
@@ -47,33 +70,39 @@ const DisplayWea = () => {
           </div>
         </div>
 
-        <div className="weatherArea">
-          <h1>Argentina</h1>
-          <span> buenos aires</span>
-          <div className="icon">
-            icon
-          </div>
-          <h1>12C°</h1>
-          <h2>Soleado</h2>
-        </div>
-
-        <div className="bottomInfoArea">
-          <div className="humidityLevel">
-            <WiHumidity className='windIcon' />
-            <div className="humidInfo">
-              <h1>43 %</h1>
-              <p>Humedad</p>
+        {weatherData && (
+          <>
+            <div className="weatherArea">
+              <h1>Argentina</h1>
+              <span> buenos aires</span>
+              <div className="icon">
+                icon
+              </div>
+              <h1>12C°</h1>
+              <h2>Soleado</h2>
             </div>
-          </div>
 
-          <div className="wind">
-            <GiBarbedSun className='windIcon' />
-            <div className="humidInfo">
-              <h2>2.35km/h</h2>
-              <p>velocidad</p>
+            <div className="bottomInfoArea">
+              <div className="humidityLevel">
+                <WiHumidity className='windIcon' />
+                <div className="humidInfo">
+                  <h1>43 %</h1>
+                  <p>Humedad</p>
+                </div>
+              </div>
+
+              <div className="wind">
+                <GiBarbedSun className='windIcon' />
+                <div className="humidInfo">
+                  <h2>2.35km/h</h2>
+                  <p>velocidad</p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
+
+
       </div>
     </MainWrapper>
   )
