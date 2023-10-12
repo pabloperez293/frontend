@@ -6,8 +6,36 @@ import { GiBarbedSun } from "react-icons/gi"
 import { FaSun, FaCloud, FaCloudRain, FaCloudShowersHeavy } from "react-icons/fa"
 import { RiLoaderFill } from "react-icons/ri"
 import { TiWeatherPartlySunny } from "react-icons/ti"
+import axios from "axios";
 
 const DisplayWea = () => {
+
+  const api_key = "11f370f6b49545f3442d3ea3858319f9";
+  const api_Endpoint = "https://api.openweathermap.org/data/2.5/";
+
+  // consumimos el apikey y detallamos datos -------
+
+  const fetchCurrentWeather = async(lat:number, lon:number) => {
+    const url = `${api_Endpoint}weather?lat=${lat}&lon=${lon}&appid=${api_key}&units=metric`
+
+    const response = await axios.get(url);
+    return response.data;
+  }
+
+  // Obtenemos los datos ----
+
+  React.useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+  // Destrecturamos
+      Promise.all([fetchCurrentWeather(latitude, longitude)]).then(
+        ([ currentWeather]) => {
+          console.log(currentWeather)
+        }
+      )
+    })
+  })
+
   
   return (
     <MainWrapper>
@@ -25,7 +53,7 @@ const DisplayWea = () => {
           <div className="icon">
             icon
           </div>
-          <h1>20c</h1>
+          <h1>12C°</h1>
           <h2>Soleado</h2>
         </div>
 
@@ -33,7 +61,7 @@ const DisplayWea = () => {
           <div className="humidityLevel">
             <WiHumidity className='windIcon' />
             <div className="humidInfo">
-              <h1>20%</h1>
+              <h1>43 %</h1>
               <p>Humedad</p>
             </div>
           </div>
