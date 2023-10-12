@@ -104,11 +104,9 @@ justify-content: space-around;
 font-family: "Josefin Sans", sans-serif;
 margin: 10px;
 background: linear-gradient(
-90deg,
-rgba(243, 255, 253, 1) 0%,
-rgba(253, 255, 232, 1) 100%
-);
+90deg,rgba(#21DBAA) 50%,rgba(#0076C7) 100%);
 border-radius: 12px;
+box-shadow: -6px 4px 25px 25px rgba(0,0,0,0.10);
 padding: 10px;
 }
 .humidityLevel,

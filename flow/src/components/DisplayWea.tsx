@@ -3,8 +3,12 @@ import { MainWrapper } from './styled.module';
 import { CgSearch } from "react-icons/cg"
 import { WiHumidity } from "react-icons/wi"
 import { GiBarbedSun } from "react-icons/gi"
+import { FaSun, FaCloud, FaCloudRain, FaCloudShowersHeavy } from "react-icons/fa"
+import { RiLoaderFill } from "react-icons/ri"
+import { TiWeatherPartlySunny } from "react-icons/ti"
 
 const DisplayWea = () => {
+  
   return (
     <MainWrapper>
       <div className="container">
