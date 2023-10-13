@@ -4,8 +4,8 @@ import { CgSearch } from "react-icons/cg"
 import { WiHumidity } from "react-icons/wi"
 import { GiBarbedSun } from "react-icons/gi"
 import { FaSun, FaCloud, FaCloudRain, FaCloudShowersHeavy } from "react-icons/fa"
-import { RiLoaderFill } from "react-icons/ri"
-import { TiWeatherPartlySunny, TiWeatherWindy } from "react-icons/ti"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { TiWeatherWindy } from "react-icons/ti"
 import axios from "axios";
 
 interface WeatherDataProps {
@@ -29,8 +29,8 @@ interface WeatherDataProps {
 const DisplayWea = () => {
 
   /* consumicion de Apis */
-  const api_key = "11f370f6b49545f3442d3ea3858319f9";
-  const api_Endpoint = "https://api.openweathermap.org/data/2.5/";
+  const api_key = process.env.REACT_APP_api_key;
+  const api_Endpoint = process.env.REACT_APP_api_Endpoint;
 
 
   // Traera lo que pedimos de interfaace---
