@@ -5,21 +5,21 @@ export const MainWrapper = styled.div`
 height: 100vh;
 background: linear-gradient(to right, #21DBAA, #0076C7);
 .container {
-background-color: #ffffff7d;
-border-radius: 12px;
-padding: 1rem;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-box-shadow: 0 10px 15px rgb(0 0 0 / 20%);
-box-sizing: border-box;
-color: rgba(0, 0, 0, 0.8);
-background-blend-mode: overlay;
-justify-content: space-between;
-align-items: center;
-flex-direction: column;
-position: absolute;
+    background-color: #ffffff7d;
+    border-radius: 12px;
+    padding: 1rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 10px 15px rgb(0 0 0 / 20%);
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.8);
+    background-blend-mode: overlay;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
 }
 
 
@@ -140,6 +140,7 @@ z-index: 9999;
 
 .loadingIcon {
 font-size: 3rem;
+
 /* DO LATER NOT WHEN CREATING UI */
 animation: spin 2s linear infinite;
 }
@@ -160,4 +161,9 @@ to {
 transform: rotate(360deg);
 }
 }
-`;
+
+
+
+
+
+`
